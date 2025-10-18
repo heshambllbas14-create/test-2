@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>موقع مانهوا - الصفحة الرئيسية</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1113;
+      --card:#141617;
+      --muted:#9aa0a6;
+      --accent:#e74c3c;
+      --accent-dark:#c43b2b;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --gap:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg),#0b0b0b);
+      color:#e6eef3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+      padding-bottom:40px;
+    }
+
+    /* Navbar */
+    nav{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(10,10,10,0.7), rgba(10,10,10,0.55));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      display:flex;
+      gap:6px;
+      align-items:baseline;
+      font-weight:700;
+      font-size:18px;
+    }
+    .logo .white{color:#fff}
+    .logo .red{color:var(--accent); margin-left:6px}
+
+    .search-box{
+      margin-inline-start:auto;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .search-box input{
+      width:260px;
+      max-width:40vw;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      padding:10px 12px;
+      border-radius:10px;
+      color:var(--muted);
+      outline:none;
+    }
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      font-size:18px;
+      margin-inline-start:8px;
+    }
+
+    /* Header / Hero */
+    .hero{
+      padding:22px 18px;
+    }
+    .hero-top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .hero-title{
+      font-size:20px;
+      font-weight:700;
+    }
+    .hero-sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
+    }
+
+    /* Grid listing */
+    .listing{
+      padding:14px 18px;
+      max-width:1200px;
+      margin-inline:auto;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:var(--gap);
+    }
+
+    @media(min-width:720px){
+      .grid{grid-template-columns: repeat(3, 1fr);}
+    }
+    @media(min-width:1000px){
+      .grid{grid-template-columns: repeat(4, 1fr);}
+      .search-box input{max-width:26vw}
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      transition: transform .16s ease, box-shadow .16s ease;
+      position:relative;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.7);}
+
+    .cover{
+      width:100%;
+      aspect-ratio: 3/4;
+      object-fit:cover;
+      display:block;
+      border-bottom:1px solid rgba(255,255,255,0.02);
+    }
+    .badge{
+      position:absolute;
+      top:10px;
+      left:10px; /* note: rtl so left is visually start */
+      background:var(--accent);
+      color:#fff;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:8px;
+      font-weight:600;
+      box-shadow: 0 6px 18px rgba(196,59,43,0.2);
+    }
+    .card-body{
+      padding:12px;
+      display:flex;
+      gap:8px;
+      flex-direction:column;
+      flex:1;
+    }
+    .title{
+      font-size:15px;
+      font-weight:700;
+      margin:0 0 6px 0;
+      color:#fff;
+    }
+    .meta{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .stars{
+      display:inline-flex;
+      gap:3px;
+      align-items:center;
+    }
+    .stars i{color: #f1c40f; font-size:12px}
+    .rating-num{color:var(--muted); margin-inline-end:6px; font-weight:600}
+
+    .card-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:auto;
+      gap:8px;
+    }
+    .btn-small{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      padding:8px 10px;
+      border-radius:10px;
+      color:var(--muted);
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(180deg,var(--accent), var(--accent-dark));
+      color:#fff;
+      border:0;
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    /* load more */
+    .load-more{
+      display:flex;
+      justify-content:center;
+      margin-top:18px;
+    }
+
+    /* modal chapters */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:120;
+      visibility:hidden;
+      opacity:0;
+      transition:opacity .16s ease, visibility .16s;
+    }
+    .modal-backdrop.open{visibility:visible; opacity:1}
+    .modal{
+      width:94%;
+      max-width:720px;
+      background:linear-gradient(180deg, #0f1113, #0b0b0b);
+      border-radius:12px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    }
+    .modal h3{margin:0 0 10px 0; font-size:18px}
+    .chapters{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    .chapter{
+      padding:10px;
+      background:rgba(255,255,255,0.02);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* reader overlay */
+    .reader{
+      position:fixed;
+      inset:0;
+      z-index:150;
+      background:#000;
+      display:flex;
+      flex-direction:column;
+      visibility:hidden;
+      opacity:0;
+      transition:opacity .12s ease, visibility .12s;
+    }
+    .reader.open{visibility:visible; opacity:1}
+    .reader .topbar{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:10px;
+      color:#fff;
+      background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+    }
+    .reader .pages{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+      overflow:auto;
+    }
+    .reader img{max-width:100%; height:auto; display:block; margin-inline:auto;}
+
+    /* empty state */
+    .empty{
+      text-align:center;
+      color:var(--muted);
+      padding:40px 18px;
+    }
+
+    footer{
+      margin-top:28px;
+      color:var(--muted);
+      text-align:center;
+      font-size:13px;
+    }
+
+    /* small responsive tweaks */
+    @media(max-width:420px){
+      .grid{grid-template-columns: repeat(2, 1fr)}
+      .search-box input{display:none}
+      .menu-toggle{display:inline-block}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo"><span class="white">موقع</span><span class="red">مانهوا</span></div>
+
+    <div class="search-box" aria-hidden="false">
+      <input id="searchInput" placeholder="ابحث عن مانهوا أو فصل..." />
+      <button class="btn-small" onclick="applySearch()">بحث</button>
+    </div>
+
+    <button class="menu-toggle" onclick="toggleFilters()">≡</button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="hero-title">الأكثر شهرة اليوم</div>
+        <div class="hero-sub">تصفح أحدث وأشهر المانهوا — اضغط على أي بطاقة لعرض الفصول والقراءة</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LISTING -->
+  <main class="listing" id="listingRoot">
+    <section class="grid" id="grid">
+      <!-- بطاقات ديناميكية تُضاف بواسطة JS -->
+    </section>
+
+    <div class="load-more">
+      <button id="loadMoreBtn" class="btn-primary" onclick="loadMore()">تحميل المزيد</button>
+    </div>
+
+    <div id="emptyState" class="empty" style="display:none">
+      لا توجد نتائج للبحث.
+    </div>
+  </main>
+
+  <!-- Modal فصول -->
+  <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)">
+    <div class="modal" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 id="modalTitle">فصول السلسلة</h3>
+        <button class="btn-small" onclick="closeModal()">إغلاق</button>
+      </div>
+      <div id="chaptersContainer" class="chapters" style="margin-top:12px">
+        <!-- فصول ستظهر هنا -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Reader Overlay -->
+  <div id="reader" class="reader" aria-hidden="true">
+    <div class="topbar">
+      <button class="btn-small" onclick="closeReader()">خروج</button>
+      <div id="readerTitle" style="margin-inline-start:12px; font-weight:700"></div>
+      <div style="margin-inline-start:auto; color:var(--muted)" id="readerPage"></div>
+      <button class="btn-small" id="prevPage" onclick="prevPage()">السابق</button>
+      <button class="btn-primary" id="nextPage" onclick="nextPage()">التالي</button>
+    </div>
+    <div class="pages" id="readerPages">
+      <!-- صورة الفصل -->
+    </div>
+  </div>
+
+  <footer>
+    تم البناء بواسطة قالب مبدئي — عدّل المحتوى والصور كما تريد.
+  </footer>
+
+  <!-- Script: بيانات وهمية + منطق العرض -->
+  <script>
+    /* مثال لبيانات مانهوا — استبدل هذه البيانات بما تريد أو اجلبها ديناميكياً من API */
+    const mangas = [
+      {
+        id: 'm1',
+        title: 'The Greatest Estate Developer',
+        cover: 'https://i.imgur.com/6Z2Q3ZP.jpg', // ضع رابط غلاف
+        latest: 'Chapter 211',
+        rating: 9.9,
+        type: 'MANHWA',
+        chapters: [
+          { id:'c211', title:'Chapter 211', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+          { id:'c210', title:'Chapter 210', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+        ]
+      },
+      {
+        id: 'm2',
+        title: 'Solo Max-Level Newbie',
+        cover: 'https://i.imgur.com/3QqKq4x.jpg',
+        latest: 'Chapter 228',
+        rating: 9.5,
+        type: 'MANHWA',
+        chapters: [
+          { id:'c228', title:'Chapter 228', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+          { id:'c227', title:'Chapter 227', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+        ]
+      },
+      {
+        id: 'm3',
+        title: 'Eternally Regressing Knight',
+        cover: 'https://i.imgur.com/2m2Y4nA.jpg',
+        latest: 'Chapter 79',
+        rating: 9.1,
+        type: 'MANHWA',
+        chapters: [
+          { id:'c79', title:'Chapter 79', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+          { id:'c78', title:'Chapter 78', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+        ]
+      },
+      {
+        id: 'm4',
+        title: 'Genius Martial Arts Trainer',
+        cover: 'https://i.imgur.com/9Kp6a0T.jpg',
+        latest: 'Chapter 84',
+        rating: 8.8,
+        type: 'MANHWA',
+        chapters: [
+          { id:'c84', title:'Chapter 84', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+          { id:'c83', title:'Chapter 83', pages: ['https://i.imgur.com/2Y2Qn6s.jpg']},
+        ]
+      }
+      // أضف المزيد حسب الحاجة
+    ];
+
+    // محاكاة صفحة / تحميل المزيد
+    let page = 1;
+    const perPage = 8; // كم بطاقة في كل تحميل
+    const grid = document.getElementById('grid');
+    const emptyState = document.getElementById('emptyState');
+
+    // الدالة التي تبني بطاقة HTML لكل مانهوا
+    function createCard(m){
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.dataset.id = m.id;
+
+      card.innerHTML = `
+        <div style="position:relative">
+          <img loading="lazy" class="cover" src="${m.cover}" alt="${escapeHtml(m.title)}">
+          <div class="badge">${m.type}</div>
+        </div>
+        <div class="card-body">
+          <h4 class="title">${escapeHtml(m.title)}</h4>
+          <div class="meta">
+            <div>${m.latest}</div>
+            <div style="flex:1"></div>
+            <div class="rating-num">${m.rating}</div>
+            <div class="stars">${buildStars(m.rating)}</div>
+          </div>
+
+          <div class="card-footer" style="margin-top:10px">
+            <button class="btn-small" onclick="openChapters('${m.id}')">عرض الفصول</button>
+            <button class="btn-primary" onclick="quickRead('${m.id}')">قراءة سريعة</button>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    // إضافة مجموعة إلى الشبكة
+    function render(items, replace=false){
+      if(replace) grid.innerHTML = '';
+      if(!items || items.length===0){
+        emptyState.style.display = 'block';
+        return;
+      } else {
+        emptyState.style.display = 'none';
+      }
+      items.forEach(it=> grid.appendChild(createCard(it)));
+    }
+
+    // تحميل أول دفعة
+    function loadInitial(){
+      // لو عندك API استخدم fetch هنا؛ الآن نستخدم بيانات محلية
+      const start = (page-1)*perPage;
+      const chunk = mangas.slice(start, start+perPage);
+      render(chunk, page===1);
+      page++;
+    }
+
+    // زر تحميل المزيد
+    function loadMore(){
+      const start = (page-1)*perPage;
+      const chunk = mangas.slice(start, start+perPage);
+      if(chunk.length===0){
+        document.getElementById('loadMoreBtn').innerText = 'لا مزيد';
+        document.getElementById('loadMoreBtn').disabled = true;
+        return;
+      }
+      render(chunk);
+      page++;
+    }
+
+    // بحث
+    function applySearch(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if(!q){ grid.innerHTML=''; page=1; loadInitial(); return; }
+      const res = mangas.filter(m => m.title.toLowerCase().includes(q) || m.type.toLowerCase().includes(q));
+      grid.innerHTML='';
+      render(res, true);
+    }
+
+    // فتح مودال الفصول
+    const modal = document.getElementById('modalBackdrop');
+    const chaptersContainer = document.getElementById('chaptersContainer');
+    const modalTitle = document.getElementById('modalTitle');
+
+    function openChapters(mId){
+      const m = mangas.find(x=>x.id===mId);
+      if(!m) return;
+      modalTitle.innerText = m.title + ' — الفصول';
+      chaptersContainer.innerHTML = '';
+      m.chapters.forEach(ch=>{
+        const el = document.createElement('div');
+        el.className = 'chapter';
+        el.innerHTML = `<div style="font-weight:600">${escapeHtml(ch.title)}</div><div style="color:var(--muted)">${ch.pages.length} صفحة</div>`;
+        el.onclick = ()=> openReader(m.title, ch);
+        chaptersContainer.appendChild(el);
+      });
+      modal.classList.add('open');
+    }
+    function closeModal(e){
+      modal.classList.remove('open');
+    }
+
+    // Quick read (افتح أحدث فصل)
+    function quickRead(mId){
+      const m = mangas.find(x=>x.id===mId);
+      if(!m) return;
+      const ch = m.chapters[0]; // أحدث فصل
+      openReader(m.title, ch);
+    }
+
+    // Reader logic
+    const reader = document.getElementById('reader');
+    const readerPages = document.getElementById('readerPages');
+    const readerTitle = document.getElementById('readerTitle');
+    const readerPageText = document.getElementById('readerPage');
+
+    let currentPages = [];
+    let currentIndex = 0;
+
+    function openReader(seriesTitle, chapter){
+      reader.classList.add('open');
+      readerTitle.innerText = `${seriesTitle} — ${chapter.title}`;
+      currentPages = chapter.pages || [];
+      currentIndex = 0;
+      renderPage();
+    }
+    function closeReader(){
+      reader.classList.remove('open');
+      readerPages.innerHTML = '';
+    }
+    function renderPage(){
+      readerPages.innerHTML = '';
+      if(currentPages.length===0){
+        readerPages.innerHTML = `<div style="color:var(--muted);padding:32px">لا توجد صفحات</div>`;
+        readerPageText.innerText = '';
+        return;
+      }
+      const url = currentPages[currentIndex];
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = 'صفحة ' + (currentIndex+1);
+      img.loading = 'eager';
+      readerPages.appendChild(img);
+      readerPageText.innerText = (currentIndex+1) + ' / ' + currentPages.length;
+      // السابق/التالي تفعيل/تعطيل
+      document.getElementById('prevPage').disabled = currentIndex===0;
+      document.getElementById('nextPage').disabled = currentIndex >= currentPages.length-1;
+    }
+    function nextPage(){
+      if(currentIndex < currentPages.length-1){
+        currentIndex++;
+        renderPage();
+      }
+    }
+    function prevPage(){
+      if(currentIndex > 0){
+        currentIndex--;
+        renderPage();
+      }
+    }
+
+    // أدوات مساعدة
+    function buildStars(rating){
+      // rating على مقياس 0-10، نحول لنجوم 5
+      const r = Math.round((rating/10)*5);
+      let out = '';
+      for(let i=0;i<r;i++) out += '<i class="fas fa-star"></i>';
+      for(let i=r;i<5;i++) out += '<i class="far fa-star" style="color:rgba(255,255,255,0.07)"></i>';
+      return out;
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});
+    }
+
+    // init
+    loadInitial();
+
+    // small helper: close modal on ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeModal(); closeReader(); }
+    });
+
+    // toggleFilters (زر القائمة الصغير)
+    function toggleFilters(){ alert('يمكن إضافة فلاتر / تصنيفات هنا بسهولة — سأبنيها لك إن أحببت.'); }
+
+  </script>
+
+  <!-- Font Awesome (stars/icons) -->
+  <script src="https://kit.fontawesome.com/1f0a7f3d0b.js" crossorigin="anonymous"></script>
+</body>
+</html>
