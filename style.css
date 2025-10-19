@@ -1,0 +1,308 @@
+/* ===== إعدادات أساسية ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+body {
+    background: #111;
+    color: #fff;
+}
+
+/* ===== الهيدر ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #1a1a1a;
+    border-bottom: 2px solid #ff0000;
+}
+
+.logo img {
+    width: 120px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff0000;
+}
+/* ===== قسم المانهوا ===== */
+.manhwa-section {
+    padding: 40px;
+}
+
+.section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    border-right: 4px solid red;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.manhwa-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.manhwa-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.manhwa-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.manhwa-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.btn-read {
+    background: red;
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-read:hover {
+    background: #ff4d4d;
+}
+
+.manhwa-card:hover {
+    transform: translateY(-5px);
+}
+/* ===== الفوتر ===== */
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 14px;
+    border-top: 2px solid red;
+}
+/* ===== صفحة تفاصيل المانهوا ===== */
+.manhwa-info {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    background: #1a1a1a;
+    border-bottom: 2px solid red;
+}
+
+.manhwa-info img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.manhwa-info .info {
+    max-width: 600px;
+}
+
+.manhwa-info h1 {
+    margin-bottom: 10px;
+    color: red;
+}
+
+.manhwa-info .details {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.manhwa-info .desc {
+    margin-top: 15px;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+.chapters {
+    padding: 20px 40px;
+}
+
+.chapters h2 {
+    margin-bottom: 15px;
+    color: red;
+}
+
+.chapters ul {
+    list-style: none;
+}
+
+.chapters ul li {
+    margin-bottom: 10px;
+}
+
+.chapters ul li a {
+    background: #222;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.chapters ul li a:hover {
+    background: red;
+}
+/* ===== صفحة قراءة الفصل ===== */
+.chapter-title {
+    text-align: center;
+    padding: 15px;
+    background: #111;
+    border-bottom: 2px solid red;
+}
+
+.chapter-title h2 {
+    margin: 0;
+}
+
+.chapter-images img {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.chapter-nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.chapter-nav a {
+    background: red;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.chapter-nav a:hover {
+    background: #d40000;
+}
+/* ===== صفحة المانهوا ===== */
+.manhwa-info {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin: 30px auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.manhwa-info img {
+    width: 220px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.manhwa-info .info {
+    flex: 1;
+}
+
+.manhwa-info h1 {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.manhwa-info .details {
+    color: #555;
+}
+
+.chapters {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+
+.chapters h2 {
+    margin-bottom: 10px;
+}
+
+.chapters ul {
+    list-style: none;
+    padding: 0;
+}
+
+.chapters ul li {
+    margin-bottom: 10px;
+}
+
+.chapters ul li a {
+    text-decoration: none;
+    background: #333;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.chapters ul li a:hover {
+    background: #ff4747;
+}
+/* ===== أزرار التفاعل ===== */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.actions .btn {
+    padding: 10px 15px;
+    border: none;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.actions .btn:hover {
+    background: #ff4757;
+}
+
+.actions .favorite {
+    background: #ff6b81;
+}
+
+.actions .follow {
+    background: #1e90ff;
+}
+
+.actions .report {
+    background: #ff4757;
+}
